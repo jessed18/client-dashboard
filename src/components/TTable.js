@@ -1,3 +1,16 @@
+// src/components/TTable.js
+import { Tooltip } from "react-tooltip";
+import { tooltips } from "../utils/tooltipTexts";
+
+function InfoIcon({ id }) {
+  return (
+    <>
+      <span data-tooltip-id={id} style={{ cursor: "pointer", marginLeft: 5 }}>❓</span>
+      <Tooltip id={id} place="top" effect="solid" />
+    </>
+  );
+}
+
 export default function TTable({ data }) {
   const { revenue, expenses, assets, liabilities } = data;
 
@@ -15,19 +28,25 @@ export default function TTable({ data }) {
         </thead>
         <tbody>
           <tr>
-            <td>Cash</td>
+            <td>
+              Cash <InfoIcon id="assets" />
+            </td>
             <td>Asset</td>
             <td>${assets}</td>
             <td>-</td>
           </tr>
           <tr>
-            <td>Accounts Payable</td>
+            <td>
+              Accounts Payable <InfoIcon id="liabilities" />
+            </td>
             <td>Liability</td>
             <td>-</td>
             <td>${liabilities}</td>
           </tr>
           <tr>
-            <td>Owner's Equity</td>
+            <td>
+              Owner's Equity <InfoIcon id="currentRatio" />
+            </td>
             <td>Equity</td>
             <td>-</td>
             <td>${(assets - liabilities - expenses + revenue).toFixed(2)}</td>
@@ -39,19 +58,25 @@ export default function TTable({ data }) {
             <td>-</td>
           </tr>
           <tr>
-            <td>Sales Revenue</td>
+            <td>
+              Sales Revenue <InfoIcon id="revenue" />
+            </td>
             <td>Revenue</td>
             <td>-</td>
             <td>${revenue}</td>
           </tr>
           <tr>
-            <td>Rent Expense</td>
+            <td>
+              Rent Expense <InfoIcon id="expenses" />
+            </td>
             <td>Expense</td>
             <td>${(expenses * 0.4).toFixed(2)}</td>
             <td>-</td>
           </tr>
           <tr>
-            <td>Salaries Expense</td>
+            <td>
+              Salaries Expense <InfoIcon id="expenses" />
+            </td>
             <td>Expense</td>
             <td>${(expenses * 0.6).toFixed(2)}</td>
             <td>-</td>

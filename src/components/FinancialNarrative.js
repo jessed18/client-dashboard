@@ -1,3 +1,4 @@
+// src/components/FinancialNarrative.js
 export default function FinancialNarrative({ data }) {
   const { revenue, expenses, assets, liabilities } = data;
 
@@ -8,7 +9,7 @@ export default function FinancialNarrative({ data }) {
   let story = "";
 
   if (grossMargin > 0.5) {
-    story += "Your business is generating strong profits compared to expenses. ";
+    story += "Your business is generating strong profits compared to expenses ❓. ";
   } else if (grossMargin > 0.3) {
     story += "Your margins are decent, but there’s room to improve profitability. ";
   } else {
@@ -16,22 +17,20 @@ export default function FinancialNarrative({ data }) {
   }
 
   if (currentRatio > 2) {
-    story += "You have more than enough assets to cover your liabilities, which means you're in a strong liquidity position. ";
+    story += "You have more than enough assets to cover your liabilities ❓, which means you're in a strong liquidity position. ";
   } else if (currentRatio > 1) {
     story += "You can cover your short-term obligations, but keep an eye on cash flow. ";
   } else {
     story += "Your liabilities are outweighing your assets — consider improving collections or cutting back on short-term debt. ";
   }
 
-  // Debt-to-Equity insight
   if (debtToEquity < 1) {
-    story += "You're using more of your own equity than debt — a healthy sign of sustainability. ";
+    story += "You're using more of your own equity than debt ❓ — a healthy sign of sustainability. ";
   } else if (debtToEquity < 2) {
     story += "You're somewhat leveraged — not a problem if you're investing in growth. ";
   } else {
     story += "Your business is highly leveraged. Be cautious about taking on more debt without increasing equity or profits. ";
   }
-
 
   if (revenue < 10000) {
     story += "Compared to other small businesses, your revenue is on the lower side — consider marketing or pricing strategies to grow.";

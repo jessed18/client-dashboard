@@ -1,4 +1,34 @@
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
+import { tooltips } from "../utils/tooltipTexts";
+
+function InfoIcon({ id }) {
+  return (
+    <>
+      <span
+        data-tooltip-id={id}
+        data-tooltip-content={tooltips[id]}
+        style={{
+          cursor: "pointer",
+          marginLeft: 5,
+          display: "inline-block",
+          backgroundColor: "#e0e0e0",
+          borderRadius: "50%",
+          width: "18px",
+          height: "18px",
+          textAlign: "center",
+          fontSize: "12px",
+          lineHeight: "18px",
+          fontWeight: "bold",
+          color: "#333"
+        }}
+      >
+        ?
+      </span>
+      <Tooltip id={id} place="top" effect="solid" />
+    </>
+  );
+}
 
 export default function FinancialForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -27,18 +57,25 @@ export default function FinancialForm({ onSubmit }) {
     <form onSubmit={handleSubmit}>
       <h2>Enter Financial Data</h2>
       {["revenue", "expenses", "assets", "liabilities"].map((field) => (
-        <div key={field}>
-          <label>{field[0].toUpperCase() + field.slice(1)}: </label>
+        <div key={field} style={{ marginBottom: "1rem" }}>
+          <label htmlFor={field}>
+            {field[0].toUpperCase() + field.slice(1)} <InfoIcon id={field} />
+          </label>
+          <br />
           <input
             type="number"
             name={field}
+            id={field}
             value={formData[field]}
             onChange={handleChange}
             required
+            style={{ padding: "6px", width: "200px", marginTop: "4px" }}
           />
         </div>
       ))}
-      <button type="submit">Calculate</button>
+      <button type="submit" style={{ padding: "8px 16px" }}>
+        Calculate
+      </button>
     </form>
   );
 }

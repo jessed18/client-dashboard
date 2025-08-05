@@ -1,3 +1,4 @@
+// src/components/ChartDisplay.js
 import { Bar } from "react-chartjs-2";
 import { Chart, BarElement, CategoryScale, LinearScale } from "chart.js";
 
@@ -5,10 +6,14 @@ Chart.register(BarElement, CategoryScale, LinearScale);
 
 export default function ChartDisplay({ metrics }) {
   const data = {
-    labels: ["Current Ratio", "Debt-to-Equity", "Gross Margin"],
+    labels: [
+      "Current Ratio ❓",
+      "Debt-to-Equity ❓",
+      "Gross Margin ❓"
+    ],
     datasets: [
       {
-        label: "Ratios",
+        label: "Financial Ratios",
         data: [
           metrics.currentRatio,
           metrics.debtToEquity,
